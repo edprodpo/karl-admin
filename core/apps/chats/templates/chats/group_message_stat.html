@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="custom-table">
+    <h1 class="table-header">
+        Групповые чаты
+    </h1>
+    <div class="table-container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Количество сообщений</th>
+                    <th scope="col">Уникальные пользователи</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in stats %}
+                <tr>
+                    <td>{{ stat.month }}</td>
+                    <td>{{ stat.total_messages }}</td>
+                    <td>{{ stat.unique_users }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock  %}
