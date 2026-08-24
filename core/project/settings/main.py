@@ -235,26 +235,41 @@ JAZZMIN_SETTINGS = {
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
+
     'formatters': {
         'verbose': {
             'format': (
-                '%(levelname)s %(asctime)s %(module)s %(process)d '
-                '%(thread)d %(message)s error_meta:\n%(error_meta)s'
+                '{levelname} {asctime} {name} '
+                'pid={process} tid={thread} {message}'
             ),
+            'style': '{',
         },
     },
+
     'handlers': {
         'console': {
-            'level': 'ERROR',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
     },
+
     'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+
         'django.request': {
             'handlers': ['console'],
             'level': 'ERROR',
+            'propagate': False,
+        },
+
+        'django.server': {
+            'handlers': ['console'],
+            'level': 'INFO',
             'propagate': False,
         },
     },
