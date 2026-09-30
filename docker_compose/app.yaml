@@ -10,12 +10,12 @@ services:
       gunicorn core.project.wsgi:application
       --bind 0.0.0.0:${DJANGO_PORT:-8000}
       --workers 2
-      --worker-class gthread
-      --threads 2
+      --worker-class sync
       --max-requests 100
       --max-requests-jitter 20
-      --timeout 60
-      --graceful-timeout 30
+      --timeout 30
+      --graceful-timeout 15
+      --keep-alive 2
       --access-logfile -
       --error-logfile -
       --capture-output
